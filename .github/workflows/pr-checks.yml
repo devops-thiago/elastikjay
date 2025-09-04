@@ -29,11 +29,8 @@ jobs:
         key: ${{ runner.os }}-sonar
         restore-keys: ${{ runner.os }}-sonar
     
-    - name: Run tests with coverage
-      run: mvn clean verify
-    
-    - name: Run code quality checks
-      run: mvn spotbugs:check checkstyle:check
+    - name: Run tests with coverage and quality checks
+      run: mvn clean verify spotbugs:check checkstyle:check
     
     - name: SonarCloud Scan
       env:

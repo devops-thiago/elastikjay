@@ -38,11 +38,8 @@ jobs:
         mvn versions:set -DnewVersion=$VERSION
         mvn versions:commit
     
-    - name: Run full build and tests
-      run: mvn clean verify
-    
-    - name: Run quality checks
-      run: mvn spotbugs:check checkstyle:check
+    - name: Run full build, tests and quality checks
+      run: mvn clean verify spotbugs:check checkstyle:check
     
     - name: Build and sign artifacts
       env:

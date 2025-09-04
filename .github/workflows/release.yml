@@ -1,0 +1,76 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    name: Build and Deploy Release
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+        server-id: ossrh
+        server-username: MAVEN_USERNAME
+        server-password: MAVEN_PASSWORD
+    
+    - name: Configure Git
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+    
+    - name: Update version for release
+      run: |
+        # Extract version from tag (remove 'v' prefix if present)
+        VERSION=${GITHUB_REF#refs/tags/}
+        VERSION=${VERSION#v}
+        
+        # Update Maven version
+        mvn versions:set -DnewVersion=$VERSION
+        mvn versions:commit
+    
+    - name: Run full build and tests
+      run: mvn clean verify
+    
+    - name: Run quality checks
+      run: mvn spotbugs:check checkstyle:check
+    
+    - name: Build and sign artifacts
+      env:
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      run: |
+        # Import GPG key for signing
+        echo "$GPG_PRIVATE_KEY" | gpg --dearmor > private.key
+        gpg --import private.key
+        rm private.key
+        
+        # Build with signing
+        mvn clean package gpg:sign
+    
+    - name: Deploy to Maven Central
+      env:
+        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+        MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+      run: mvn deploy -P release
+    
+    - name: Upload release artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-artifacts
+        path: |
+          annotations/target/*.jar
+          core/target/*.jar
+          !annotations/target/*-sources.jar
+          !core/target/*-sources.jar
+          !annotations/target/*-javadoc.jar
+          !core/target/*-javadoc.jar

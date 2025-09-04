@@ -14,7 +14,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.arquivolivre.elastikyjay</groupId>
-                <artifactId>elastiky-jay-annotations</artifactId>
+                <artifactId>elastikjay-annotations</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

@@ -1,11 +1,11 @@
 package com.arquivolivre.elastikjay.commons;
 
-import com.arquivolivre.elastikyjay.annotations.Analyzer;
-import com.arquivolivre.elastikyjay.annotations.Ignored;
-import com.arquivolivre.elastikyjay.annotations.Index;
-import com.arquivolivre.elastikyjay.annotations.Nested;
-import com.arquivolivre.elastikyjay.annotations.NotAnalyzed;
-import com.arquivolivre.elastikyjay.annotations.NotIndexed;
+import com.arquivolivre.elastikjay.annotations.Analyzer;
+import com.arquivolivre.elastikjay.annotations.Ignored;
+import com.arquivolivre.elastikjay.annotations.Index;
+import com.arquivolivre.elastikjay.annotations.Nested;
+import com.arquivolivre.elastikjay.annotations.NotAnalyzed;
+import com.arquivolivre.elastikjay.annotations.NotIndexed;
 import static com.arquivolivre.elastikjay.commons.Types.isBasicType;
 import static com.arquivolivre.elastikjay.commons.Types.isGeneric;
 import com.google.gson.Gson;
@@ -20,7 +20,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
@@ -43,7 +44,7 @@ public class IndexManagerImpl implements IndexManager {
     
     private final Client elasticSearchClient;
     private BulkRequestBuilder bulkRequest;
-    private final Logger logger = Logger.getLogger(IndexManagerImpl.class);
+    private final Logger logger = LogManager.getLogger(IndexManagerImpl.class);
     
     IndexManagerImpl(Client client) {
         this.elasticSearchClient = client;

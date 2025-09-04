@@ -21,3 +21,20 @@ nb-configuration.xml
 /elastiky-core/target/
 /annotations/target/
 /core/target/
+/target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# SonarQube
+.sonar/
+
+# Maven wrapper
+.mvn/
+mvnw
+mvnw.cmd

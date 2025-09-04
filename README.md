@@ -1,5 +1,15 @@
 # ElastiKJay
 
+[![Build Status](https://github.com/devops-thiago/elastikjay/workflows/CI/badge.svg)](https://github.com/devops-thiago/elastikjay/actions)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=devops-thiago_elastikjay&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=devops-thiago_elastikjay)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=devops-thiago_elastikjay&metric=coverage)](https://sonarcloud.io/summary/new_code?id=devops-thiago_elastikjay)
+[![codecov](https://codecov.io/gh/devops-thiago/elastikjay/branch/main/graph/badge.svg)](https://codecov.io/gh/devops-thiago/elastikjay)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=devops-thiago_elastikjay&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=devops-thiago_elastikjay)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=devops-thiago_elastikjay&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=devops-thiago_elastikjay)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=devops-thiago_elastikjay&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=devops-thiago_elastikjay)
+[![Maven Central](https://img.shields.io/maven-central/v/com.arquivolivre/elastikjay.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.arquivolivre%22%20AND%20a:%22elastikjay%22)
+[![License](https://img.shields.io/github/license/devops-thiago/elastikjay.svg)](LICENSE)
+
 ElastiKJay is a Java library that provides annotation-based object mapping and simplified interaction with Elasticsearch. It allows developers to easily map Java POJOs to Elasticsearch indices using annotations, similar to how JPA works with relational databases.
 
 ## Features
@@ -186,6 +196,22 @@ elasticsearch.cluster.ports=9300,9300,9300
 ```
 
 ## Building and Development
+
+### CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+- **CI Pipeline**: Runs on every push to `main` branch and weekly schedule
+  - Builds the project with Maven
+  - Runs all tests with coverage reporting
+  - Performs static analysis (SpotBugs, Checkstyle)
+  - Scans code quality with SonarCloud
+  - Uploads coverage reports to Codecov
+
+- **PR Checks**: Runs on every pull request
+  - Same quality checks as CI
+  - Posts quality report comments on PRs
+  - Ensures all checks pass before merge
 
 ### Build Commands
 

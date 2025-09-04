@@ -3,7 +3,8 @@ package com.arquivolivre.elastikjay.config;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
@@ -23,7 +24,7 @@ public class Configuration {
     private final String DEFAULT_CLUSTER_NODES_KEY = "elasticsearch.nodes";
     private final String DEFAULT_NODE_KEY = "elasticsearch.node";
     private Properties properties;
-    private final Logger logger = Logger.getLogger(Configuration.class);
+    private final Logger logger = LogManager.getLogger(Configuration.class);
     
     public Client elasticSearchClient() {
         properties = getResources();
@@ -71,7 +72,7 @@ public class Configuration {
         try (InputStream in = getClass().getResourceAsStream("es.properties")) {
             prop.load(in);
         } catch (IOException ex) {
-            logger.error(null, ex);
+            logger.error("Error loading properties file", ex);
         }
         return prop;
     }

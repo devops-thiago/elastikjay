@@ -1,5 +1,7 @@
 package com.arquivolivre.elastikjay.annotations;
 
+import java.util.Locale;
+
 /**
  *
  * @author Thiago da Silva Gonzaga <thiagosg@sjrp.unesp.br>
@@ -14,6 +16,6 @@ public enum FilterType {
 
     @Override
     public String toString() {
-        return this.name().toLowerCase();
+        return this.name().toLowerCase(Locale.ROOT);
     }
 }

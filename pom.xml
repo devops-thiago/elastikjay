@@ -60,7 +60,14 @@
         <sonar.organization>devops-thiago</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.projectKey>devops-thiago_elastikjay</sonar.projectKey>
+        <sonar.projectName>ElastiKJay</sonar.projectName>
+        <sonar.projectVersion>1.2.1-SNAPSHOT</sonar.projectVersion>
+        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+        <sonar.java.source>17</sonar.java.source>
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/core/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.junit.reportPaths>${project.basedir}/core/target/surefire-reports</sonar.junit.reportPaths>
+        <sonar.exclusions>**/target/**</sonar.exclusions>
+        <sonar.test.exclusions>**/src/test/**</sonar.test.exclusions>
     </properties>
     
     <build>

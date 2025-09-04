@@ -1,0 +1,32 @@
+# GitHub Dependabot configuration for automatic dependency updates
+# See: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # Monitor Maven dependencies
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    # Limit the number of open pull requests for version updates
+    open-pull-requests-limit: 5
+    # Add reviewers (can be customized by repository maintainers)
+    reviewers:
+      - "devops-thiago"
+    # Group minor and patch updates together to reduce PR noise
+    groups:
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    # Prefix commit messages and PR titles
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    # Target main branch
+    target-branch: "main"

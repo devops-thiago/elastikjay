@@ -21,6 +21,7 @@ nb-configuration.xml
 /elastiky-core/target/
 /annotations/target/
 /core/target/
+/target/
 
 # IDE files
 .idea/
